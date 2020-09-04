@@ -27,6 +27,7 @@ class RgbwGroup(Group):
         super().__init__(bridge, number, name, led_type)
         self._hue = 0
         self._color = RGB_WHITE
+        self._animation = 0
 
     @property
     def color(self):
@@ -101,6 +102,38 @@ class RgbwGroup(Group):
                              "represented as decimal 0-1.0")
         self._hue = hue
         cmd = self.command_set.hue(hue)
+        self.send(cmd)
+
+    @property
+    def animation(self):
+        """ Animation property.
+
+        :returns: Animation mode.
+        """
+        return self._animation
+
+    @animation.setter
+    def animation(self, animation):
+        """ Set the group animation.
+
+        :param animation: Hue in decimal percent (1-9).
+        """
+        if animation < 1 or animation > 9:
+            raise ValueError("Animation must be an int in 1...9 ")
+        self._animation = animation
+        cmd = self.command_set.animation(animation)
+        self.send(cmd)
+
+    def animation_speed_up(self):
+        """ Speed up the group animation.
+        """
+        cmd = self.command_set.animation_speed_up()
+        self.send(cmd)
+
+    def animation_speed_down(self):
+        """ Speed up the group animation.
+        """
+        cmd = self.command_set.animation_speed_up()
         self.send(cmd)
 
     def transition(self, duration, color=None, brightness=None):

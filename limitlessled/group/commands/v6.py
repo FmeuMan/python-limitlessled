@@ -356,6 +356,26 @@ class CommandSetRgbwV6(CommandSetV6):
         """
         return self._build_command(0x02, self.convert_brightness(brightness))
 
+    def animation(self, animation):
+        """
+        Build command for setting the animation of the led.
+        :param animation: Value to set (1-8).
+        :return: The command.
+        """
+        return self._build_command(0x06, animation)
+
+    def animation_speed_up(self):
+        """
+        Build command for speeding up command of the led.
+        """
+        return self._build_command(0x03, 0x00)
+
+    def animation_speed_down(self):
+        """
+        Build command for speeding down command of the led.
+        """
+        return self._build_command(0x03, 0x04)
+
 class CommandSetWrgbV6(CommandSetV6):
     """ Command set for WRGB led light connected to wifi bridge v6. """
 
@@ -542,3 +562,25 @@ class CommandSetRgbwwV6(CommandSetV6):
         :return: The command.
         """
         return self._build_command(0x05, self.convert_temperature(temperature))
+
+    def animation(self, animation):
+        """
+        Build command for setting the animation of the led.
+        :param animation: Value to set (1-9).
+        :return: The command.
+        """
+        return self._build_command(0x06, animation)
+
+    def animation_speed_up(self):
+        """
+        Build command for speeding up command of the led.
+        :return: The command.
+        """
+        return self._build_command(0x03, 0x00)
+
+    def animation_speed_down(self):
+        """
+        Build command for speeding down command of the led.
+        :return: The command.
+        """
+        return self._build_command(0x04, 0x00)

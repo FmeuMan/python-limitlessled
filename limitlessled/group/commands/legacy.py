@@ -216,6 +216,31 @@ class CommandSetRgbwLegacy(CommandSetLegacy):
         return self._build_command(0x4E, self.convert_brightness(brightness),
                                    select=True, select_command=self.on())
 
+    def animation(self, animation):
+        """
+        Build command for setting the animation of the led.
+        :param animation: Value to set (0-8).
+        :return: The command.
+        """
+        return self._build_command(0x4D, animation,
+                                   select=True, select_command=self.on())
+
+    def animation_speed_up(self):
+        """
+        Build command for speeding up command of the led.
+        :return: The command.
+        """
+        return self._build_command(0x44, 0x00,
+                                   select=True, select_command=self.on())
+
+    def animation_speed_down(self):
+        """
+        Build command for speeding down command of the led.
+        :return: The command.
+        """
+        return self._build_command(0x43, 0x00,
+                                   select=True, select_command=self.on())
+
     def _offset(self, byte):
         """ Calcuate group command offset.
 
