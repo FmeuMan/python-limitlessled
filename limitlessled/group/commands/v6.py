@@ -194,6 +194,26 @@ class CommandSetBridgeLightV6(CommandSetV6):
         """
         return self._build_command(0x02, self.convert_brightness(brightness))
 
+    def animation(self, animation):
+        """
+        Build command for setting the animation of the led.
+        :param animation: Value to set (1-8).
+        :return: The command.
+        """
+        return self._build_command(0x04, animation)
+
+    def animation_speed_up(self):
+        """
+        Build command for speeding up command of the led.
+        """
+        return self._build_command(0x03, 0x02)
+
+    def animation_speed_down(self):
+        """
+        Build command for speeding down command of the led.
+        """
+        return self._build_command(0x03, 0x01)
+
 
 class CommandSetWhiteV6(CommandSetV6):
     """ Command set for white led light connected to wifi bridge v6. """
