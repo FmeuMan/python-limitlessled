@@ -133,7 +133,7 @@ class RgbwGroup(Group):
     def animation_speed_down(self):
         """ Speed up the group animation.
         """
-        cmd = self.command_set.animation_speed_up()
+        cmd = self.command_set.animation_speed_down()
         self.send(cmd)
 
     def transition(self, duration, color=None, brightness=None):
